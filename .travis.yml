@@ -5,8 +5,9 @@ sudo: required
 services:
 - docker
 env:
-- BUILD_APP_ENTRY="./crazyapp/main.py"
-- BUILD_OUTPUT_FILE_NAME="windows_x32_build${TRAVIS_BUILD_NUMBER}.exe"
+  global:
+    - BUILD_APP_ENTRY="./crazyapp/main.py"
+    - BUILD_OUTPUT_FILE_NAME="windows_x32_build${TRAVIS_BUILD_NUMBER}.exe"
 
 script:
 - chmod +x devscript/run_test.sh
