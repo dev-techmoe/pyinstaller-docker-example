@@ -1,0 +1,24 @@
+language: python
+python:
+- 3.6
+sudo: required
+services:
+- docker
+env:
+- BUILD_APP_ENTRY="./crazyapp/main.py"
+- BUILD_OUTPUT_FILE_NAME="windows_x32_build${TRAVIS_BUILD_NUMBER}.exe"
+
+script:
+- chmod +x devscript/run_test.sh
+- devscript/run_test.sh
+before_deploy:
+- chmod +x ./devscript/build.sh
+- "./devscript/build.sh"
+
+deploy:
+  provider: releases
+  api_key:
+    secure: HCziGO/TQAnAuRGuICx/rpqvKxfTCJLR4GhG2eY98K1no9DpUPaUl203WJZNij4n7VyBkP2/srHBORh0//U/Yq4zAeclzyW7h98PjWbGl4+BA8IKkQm3Xp6oD27HefBUTcmJUnTcQV6ECahBMWw92EOBaA/8YZCUYSZACeSzCoJgn6GAFUHmUlYoRO38Kt2Y3Sf9aR9m/rJlu7ze9upb6/TUaoF9Nz0jg+tSP55HTFYPoGLNfklDanKR1og3DFL/ju7P5Cw6wweLLlhCwQH4957p6FepE02rRkITUeym8Sq4lYwX+zubF4gyYr0sMWAcFl5cCD6uBiZXUqbUTsPrdHAxcNB2S0Bd/ypglOvepGjs840y5wD/p3tJG6pXNbdGjT4gkhQ7dHd4ce8gKPlkAg/TB8ZeabD9RhSw6CwWIhi/3jqgoXvOI0t3HUVzK5/ZiiZ4Vrfp/uiy2oKefXfX5vca2AQIXcileWKC4Wk3c/aPGMqEX8g0LQ3yv4v9xOZPt561/7MvQWbDt2PxcZVfZ7zQmMO10PzJutLHp/YuCSvVJO6R2yrMaUSjUnKLJz9c1RjhOLR6ernZ6tkLaxTe+6vMWuR+zFmczaAz0mRTkwrujgMy/4WyqC8M/SNw5b7jIaXIrZCcAtpdbaPFOmlrnCEgZLK7+Ucww9KgkhHkvKM=
+  file: pyinstaller/dist/${BUILD_OUTPUT_FILE_NAME}
+  on:
+    repo: dev-techmoe/pyinstaller-docker-example
