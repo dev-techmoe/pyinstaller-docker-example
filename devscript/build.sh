@@ -6,7 +6,9 @@ echo "TRAVIS_BUILD_NUMBER=${TRAVIS_BUILD_NUMBER}"
 echo "BUILD_APP_ENTRY=${BUILD_APP_ENTRY}"
 echo "BUILD_OUTPUT_FILE_NAME=${BUILD_OUTPUT_FILE_NAME}"
 
-docker build -t pyinstaller-windows:python3-32bit https://raw.githubusercontent.com/dev-techmoe/docker-pyinstaller/master/win32/py3/Dockerfile
+git clone https://github.com/dev-techmoe/docker-pyinstaller.git dockerfile-py3-32bit
+
+docker build -t pyinstaller-windows:python3-32bit dockerfile-py3-32bit/
 
 # pull the docker images and create the container for build
 
