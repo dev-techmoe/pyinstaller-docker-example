@@ -23,3 +23,4 @@ deploy:
   file: pyinstaller/dist/${BUILD_OUTPUT_FILE_NAME}
   on:
     repo: dev-techmoe/pyinstaller-docker-example
+    all_branches: true
