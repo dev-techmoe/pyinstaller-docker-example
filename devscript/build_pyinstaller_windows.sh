@@ -2,7 +2,6 @@
 
 # NOTICE: this script is only running in the Docker container created by "cdrx/docker-pyinstaller"
 
-apt install tree
 echo "Install dependencies"
 pip install -e .
 echo "Build windows executable files"

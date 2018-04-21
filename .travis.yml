@@ -1,20 +1,20 @@
 language: python
 python:
-- 3.6
+  - 3.6
 sudo: required
 services:
-- docker
+  - docker
 env:
   global:
     - BUILD_APP_ENTRY="./crazyapp/main.py"
     - BUILD_OUTPUT_FILE_NAME="windows_x32_build${TRAVIS_BUILD_NUMBER}.exe"
 
 script:
-- chmod +x devscript/run_test.sh
-- devscript/run_test.sh
+  - chmod +x devscript/run_test.sh
+  - devscript/run_test.sh
 before_deploy:
-- chmod +x ./devscript/build.sh
-- "./devscript/build.sh"
+  - chmod +x ./devscript/build.sh
+  - "./devscript/build.sh"
 
 deploy:
   provider: releases
